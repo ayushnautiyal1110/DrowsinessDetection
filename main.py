@@ -1,4 +1,5 @@
-from scipy.spatial import distance as dist
+try:
+    from scipy.spatial import distance as dist
 from imutils import face_utils
 import streamlit as st
 import imutils
@@ -7,6 +8,8 @@ import cv2
 import winsound
 frequency = 2500
 duration = 1000
+st.title("Drowsiness Detection")
+#@st.cache
 
 def eyeAspectRatio(eye):
     A = dist.euclidean(eye[1], eye[5])
@@ -15,8 +18,7 @@ def eyeAspectRatio(eye):
     ear = (A + B) / (2.0 * C)
     return ear
 
-st.title("Drowsiness Detection")
-@st.cache
+
 count = 0
 earThresh = 0.3 #distance between vertical eye coordinate Threshold
 earFrames = 10 #consecutive frames for eye closure
@@ -60,15 +62,16 @@ while True:
                 cv2.putText(frame, "DROWSINESS DETECTED", (10, 30),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
                 winsound.Beep(frequency,duration)
-        else:
-            count = 0
+        
 
-    cv2.imshow("Frame", frame)
-    key = cv2.waitKey(1) & 0xFF
+        cv2.imshow("Frame", frame)
+        key = cv2.waitKey(1) & 0xFF
 
-    if key == ord("q"):
-        break
+        if key == ord("q"):
+            break
 
 cam.release()
 cv2.destroyAllWindows()
 
+except Exception as e:
+    print("Error 404 Found)
