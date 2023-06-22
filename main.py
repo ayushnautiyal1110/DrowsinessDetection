@@ -8,7 +8,6 @@ import winsound
 frequency = 2500
 duration = 1000
 st.title("Drowsiness Detection")
-#@st.cache
 
 def eyeAspectRatio(eye):
     A = dist.euclidean(eye[1], eye[5])
