@@ -1,5 +1,4 @@
-try:
-    from scipy.spatial import distance as dist
+from scipy.spatial import distance as dist
 from imutils import face_utils
 import streamlit as st
 import imutils
@@ -21,7 +20,7 @@ def eyeAspectRatio(eye):
 
 count = 0
 earThresh = 0.3 #distance between vertical eye coordinate Threshold
-earFrames = 10 #consecutive frames for eye closure
+earFrames = 30 #consecutive frames for eye closure
 shapePredictor = "shape_predictor_68_face_landmarks.dat"
 
 cam = cv2.VideoCapture(0)
@@ -73,5 +72,4 @@ while True:
 cam.release()
 cv2.destroyAllWindows()
 
-except Exception as e:
-    print("Error 404 Found)
+
