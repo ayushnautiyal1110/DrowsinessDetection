@@ -1,5 +1,6 @@
 from scipy.spatial import distance as dist
 from imutils import face_utils
+import streamlit as st
 import imutils
 import dlib
 import cv2
@@ -14,6 +15,8 @@ def eyeAspectRatio(eye):
     ear = (A + B) / (2.0 * C)
     return ear
 
+st.title("Drowsiness Detection")
+@st.cache
 count = 0
 earThresh = 0.3 #distance between vertical eye coordinate Threshold
 earFrames = 10 #consecutive frames for eye closure
