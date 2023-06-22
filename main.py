@@ -1,4 +1,4 @@
-from scipy.spatial import distance as dist
+from scipy.spatial import distance as cdist
 from imutils import face_utils
 import streamlit as st
 import imutils
@@ -10,9 +10,9 @@ duration = 1000
 st.title("Drowsiness Detection")
 
 def eyeAspectRatio(eye):
-    A = dist.euclidean(eye[1], eye[5])
-    B = dist.euclidean(eye[2], eye[4])
-    C = dist.euclidean(eye[0], eye[3])
+    A = cdist.euclidean(eye[1], eye[5])
+    B = cdist.euclidean(eye[2], eye[4])
+    C = cdist.euclidean(eye[0], eye[3])
     ear = (A + B) / (2.0 * C)
     return ear
 
